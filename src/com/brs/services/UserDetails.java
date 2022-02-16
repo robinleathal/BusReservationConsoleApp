@@ -21,13 +21,14 @@ public class UserDetails {
 			System.out.println("4. Update a Bus");
 			System.out.println("5. Delete a Bus");
 			System.out.println("6. Back");
+			System.out.println("Choose an Option");
 			int choice = sc.nextInt();
 			switch (choice) {
 			case 1:
 				busDaoImplObj.addBus();
 				break;
 			case 2:
-				/*
+				
 				List<Bus> busList = busDaoImplObj.viewAllBuses();
 				System.out.println("*****************************************");
 				System.out.println("Bus ID \t  Type\t From \t To \t Price \t Seats");
@@ -36,7 +37,7 @@ public class UserDetails {
 					System.out.println(b.getId()+"\tt" + b.getType()+"\tt"+ b.getRouteFrom()+"\tt"+ b.getRouteTo()+"\tt"+ b.getTotalSeats());
 					
 				}
-				*/
+				
 				
 				busDaoImplObj.viewAllBuses();
 				break;
@@ -81,6 +82,7 @@ public class UserDetails {
 			System.out.println("3. Book a Ticket");
 			System.out.println("3. Cancel a Ticket");
 			System.out.println("4. Back");
+			
 		}
 	}
 }
