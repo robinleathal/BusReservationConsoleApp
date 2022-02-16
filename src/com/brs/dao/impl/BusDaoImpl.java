@@ -27,8 +27,9 @@ public class BusDaoImpl implements BusDao {
 			double ticketPrice= sc.nextDouble();
 			System.out.println("Enter Total Seats");
 			int totalSeats= sc.nextInt();
-			//Product pObj = new Product(bId, pName, price, qty);
-			//productList.add(pObj);
+			Bus busObj = new Bus(bId, busType, routefrom, routeTo, ticketPrice, totalSeats);
+			busList.add(busObj);
+
 			System.out.println("Bus Registred Successfully");
 			System.out.println("Do You Want to One more Bus 1)Yes 2)No");
 			k = sc.nextInt();
@@ -114,6 +115,24 @@ public class BusDaoImpl implements BusDao {
 			System.out.println("Product Doest Not Exist");
 		}
 
+	}
+	
+	public void buyProduct() {
+		System.out.println("Enter Bus Id you want to buy");
+		int id = sc.nextInt();
+		
+		for (Bus b : busList) {
+			if (b.getId() == id) {
+				int totalSeats = b.getTotalSeats();
+				totalSeats-=1;
+				b.setTotalSeats(totalSeats);
+				
+				System.out.println("Thank you for your purchase.");
+				break;
+			} else {
+				System.out.println("Bus detail doesn't match.");
+			}
+		}
 	}
 
 }
