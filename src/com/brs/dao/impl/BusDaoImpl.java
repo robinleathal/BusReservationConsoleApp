@@ -128,29 +128,31 @@ public class BusDaoImpl implements BusDao, TicketDao {
 		int bId = sc.nextInt();
 		if (!busList.isEmpty()) {
 			if (availableTickets(bId) > 0) {
+				System.out.println("How many tickets you want to book");
+				int ticketQty = sc.nextInt();
+				for (Bus b : busList) {
+					if (b.getId() == bId) {
+						if (b.getTotalSeats() >= 1 && ticketQty <= b.getTotalSeats()) {
+							int totalSeats = b.getTotalSeats();
+							totalSeats-=ticketQty;
+							b.setTotalSeats(totalSeats);
+							Random random = new Random();
+							int ticketId = random.nextInt(100);
+							Ticket ticket = new Ticket(ticketId, ticketQty);
+							System.out.println("Thank you for booking " +ticketQty+ "ticket.");
+							//break;
+						}
+						
+					} else {
+						System.out.println("Bus detail doesn't match.");
+					}
+				}
 				
 			} else {
 				System.out.println("No Seats available. ");
 			}
-			System.out.println("How many tickets you want to book");
-			int ticketQty = sc.nextInt();
-			for (Bus b : busList) {
-				if (b.getId() == bId) {
-					if (b.getTotalSeats() >= 1 && ticketQty <= b.getTotalSeats()) {
-						int totalSeats = b.getTotalSeats();
-						totalSeats-=ticketQty;
-						b.setTotalSeats(totalSeats);
-						Random random = new Random();
-						int ticketId = random.nextInt(100);
-						Ticket ticket = new Ticket(ticketId, ticketQty);
-						System.out.println("Thank you for booking " +ticketQty+ "ticket.");
-						//break;
-					}
-					
-				} else {
-					System.out.println("Bus detail doesn't match.");
-				}
-			}
+			
+			
 		}
 		
 		
