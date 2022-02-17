@@ -8,8 +8,9 @@ public interface BusDao {
 	public void addBus();
 	List<Bus> viewAllBuses();
 	//Bus viewBus(int id, String routeFrom, String routeTo);
-	Bus viewBus(int id);
+	Bus viewBus(int bId);
+	Bus searchBus(int bId);
 	void updateBus(int bId);
-	void deleteBus(int pId);
+	void deleteBus(int bId);
 	
 }

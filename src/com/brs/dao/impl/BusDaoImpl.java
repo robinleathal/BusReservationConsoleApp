@@ -2,14 +2,18 @@ package com.brs.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.brs.dao.BusDao;
+import com.brs.dao.TicketDao;
 import com.brs.entity.Bus;
+import com.brs.entity.Ticket;
 
-public class BusDaoImpl implements BusDao {
+public class BusDaoImpl implements BusDao, TicketDao {
 	Scanner sc = new Scanner(System.in);
 	List<Bus> busList = new ArrayList<>();
+	int ticketId =0; // just for console
 	@Override
 	public void addBus() {
 		int k = 1;
@@ -39,7 +43,9 @@ public class BusDaoImpl implements BusDao {
 
 	@Override
 	public List<Bus> viewAllBuses() {
-		
+		if (busList.isEmpty()) {
+			System.out.println("No Buses are available for now!!!");
+		}
 		return busList;
 	}
 
@@ -117,22 +123,87 @@ public class BusDaoImpl implements BusDao {
 
 	}
 	
-	public void buyProduct() {
-		System.out.println("Enter Bus Id you want to buy");
-		int id = sc.nextInt();
+	public void bookTicket() {
+		System.out.println("Enter Bus Id you want to book");
+		int bId = sc.nextInt();
+		if (!busList.isEmpty()) {
+			if (availableTickets(bId) > 0) {
+				
+			} else {
+				System.out.println("No Seats available. ");
+			}
+			System.out.println("How many tickets you want to book");
+			int ticketQty = sc.nextInt();
+			for (Bus b : busList) {
+				if (b.getId() == bId) {
+					if (b.getTotalSeats() >= 1 && ticketQty <= b.getTotalSeats()) {
+						int totalSeats = b.getTotalSeats();
+						totalSeats-=ticketQty;
+						b.setTotalSeats(totalSeats);
+						Random random = new Random();
+						int ticketId = random.nextInt(100);
+						Ticket ticket = new Ticket(ticketId, ticketQty);
+						System.out.println("Thank you for booking " +ticketQty+ "ticket.");
+						//break;
+					}
+					
+				} else {
+					System.out.println("Bus detail doesn't match.");
+				}
+			}
+		}
 		
+		
+	}
+	
+	public void cancelTicket() {
+		/*
+		System.out.println("Enter Bus Id you want to book");
+		int id = sc.nextInt();
+		System.out.println("How many tickets you want to cancel book");
+		int ticketQty = sc.nextInt();
+		if (totalSeats){
+			
+		}
 		for (Bus b : busList) {
 			if (b.getId() == id) {
 				int totalSeats = b.getTotalSeats();
-				totalSeats-=1;
+				totalSeats+=ticketQty;
 				b.setTotalSeats(totalSeats);
 				
-				System.out.println("Thank you for your purchase.");
+				System.out.println(ticketQty+ " ticket cancelled, Thank you for booking ");
 				break;
 			} else {
 				System.out.println("Bus detail doesn't match.");
 			}
 		}
+		*/
+	}
+
+	@Override
+	public Bus searchBus(int bId) {
+		if (!busList.isEmpty()) {
+			for (Bus b: busList) {
+				if (bId == b.getId()) {
+					return b;
+				} else {
+					System.out.println("No Buses are found!!!");
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public int availableTickets(int bId) {
+		if (!busList.isEmpty()) {
+			for (Bus b : busList) {
+				if (bId == b.getId()) {
+					return b.getTotalSeats();
+				}
+			}
+		}
+		return 0;
 	}
 
 }
