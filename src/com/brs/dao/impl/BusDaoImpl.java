@@ -118,7 +118,7 @@ public class BusDaoImpl implements BusDao, TicketDao {
 			}
 		}
 		if (j==0) {
-			System.out.println("Product Doest Not Exist");
+			System.out.println("Bus Doest Not Exist");
 		}
 
 	}

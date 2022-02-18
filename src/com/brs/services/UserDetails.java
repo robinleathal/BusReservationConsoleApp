@@ -51,17 +51,17 @@ public class UserDetails {
 				System.out.println("Bus ID \t  Type\t From \t To \t Price \t Seats");
 				System.out.println("*****************************************");
 				if (b != null) {
-					System.out.println(b.getId()+"\tt" + b.getType()+"\tt"+ b.getRouteFrom()+"\tt"+ b.getRouteTo()+"\tt"+ b.getTotalSeats());
+					System.out.println(b.getId()+"\t\t" + b.getType()+"\t\t"+ b.getRouteFrom()+"\t\t"+ b.getRouteTo()+"\t\t"+ b.getTotalSeats());
 					
 				}
 				break;
 			case 4:
-				System.out.println("Enter Product Id");
+				System.out.println("Enter Bus Id");
 				int id1= sc.nextInt();
 				busDaoImplObj.updateBus(id1);
 				break;
 			case 5:
-				System.out.println("Enter Product Id");
+				System.out.println("Enter Bus Id");
 				int id2= sc.nextInt();
 				busDaoImplObj.deleteBus(id2);
 				break;
@@ -94,7 +94,7 @@ public class UserDetails {
 				System.out.println("Bus ID \t  Type\t From \t To \t Price \t Seats");
 				System.out.println("*****************************************");
 				for (Bus b: busList) {
-					System.out.println(b.getId()+"\tt" + b.getType()+"\tt"+ b.getRouteFrom()+"\tt"+ b.getRouteTo()+"\tt"+ b.getTotalSeats());
+					System.out.println(b.getId()+"\t\t" + b.getType()+"\t\t"+ b.getRouteFrom()+"\t\t"+ b.getRouteTo()+"\t\t"+ b.getTotalSeats());
 					
 				}
 				
